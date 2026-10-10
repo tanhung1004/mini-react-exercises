@@ -2,87 +2,135 @@
 # Exercise 3: Resilient State Machine & Skeleton Loader
 
 ## Objective
-Build a resilient React and TypeScript data component
-with four lifecycle states, skeleton loading,
-error handling, and retry functionality.
+
+Build a React and TypeScript component with four lifecycle states, asynchronous data loading, skeleton feedback, error handling, retry functionality, and race condition protection.
 
 ## Task Decomposition
 
 ### Task 3.1 - Project Setup
-- [ ] Configure React + TypeScript with Vite.
-- [ ] Configure package.json and tsconfig.json.
-- [ ] Configure vite.config.ts.
-- [ ] Create main.tsx and App.tsx.
-- [ ] Create state-machine.ts and style.css.
-- [ ] Verify the development server starts.
+
+- [x] Set up React and TypeScript with Vite.
+- [x] Configure package.json.
+- [x] Configure tsconfig.json.
+- [x] Configure vite.config.ts.
+- [x] Create main.tsx and App.tsx.
+- [x] Configure CSS.
+- [x] Run the development server.
+- [x] Verify the production build.
 
 ### Task 3.2 - State Machine Definition
-- [ ] Define generic ViewState<T>.
-- [ ] Implement IDLE state.
-- [ ] Implement LOADING state.
-- [ ] Implement SUCCESS state with data.
-- [ ] Implement ERROR state with error message.
-- [ ] Use TypeScript discriminated unions.
-- [ ] Prevent invalid state combinations.
+
+- [x] Define generic ViewState<T>.
+- [x] Implement IDLE state.
+- [x] Implement LOADING state.
+- [x] Implement SUCCESS state with data.
+- [x] Implement ERROR state with error message.
+- [x] Use TypeScript discriminated unions.
+- [x] Prevent invalid state combinations.
 
 ### Task 3.3 - Asynchronous Data Loading
-- [ ] Define the Item data type.
-- [ ] Implement fetchFeed().
-- [ ] Implement async loadData().
-- [ ] Set LOADING before fetching data.
-- [ ] Set SUCCESS when the request succeeds.
-- [ ] Set ERROR when the request fails.
-- [ ] Use try/catch for error handling.
 
-### Task 3.4 - Skeleton Loading UI
-- [ ] Build the loading skeleton component.
-- [ ] Implement CSS pulsing animation.
-- [ ] Display skeleton during LOADING.
-- [ ] Replace skeleton after loading finishes.
+- [x] Define the Item data type.
+- [x] Create sample feed data.
+- [x] Implement fetchFeed().
+- [x] Implement async loadData().
+- [x] Transition from IDLE to LOADING.
+- [x] Transition from LOADING to SUCCESS.
+- [x] Handle asynchronous errors using try/catch.
+
+### Task 3.4 - Skeleton Loading
+
+- [x] Create skeleton card components.
+- [x] Implement CSS pulse animation.
+- [x] Display three skeleton cards during LOADING.
+- [x] Remove skeletons when loading finishes.
+- [x] Verify skeleton rendering in the browser.
 
 ### Task 3.5 - Success State UI
-- [ ] Display fetched data.
-- [ ] Render data using semantic HTML.
-- [ ] Verify data appears after loading.
-- [ ] Ensure skeleton disappears on success.
+
+- [x] Render fetched data.
+- [x] Display item titles and descriptions.
+- [x] Implement Reload Data button.
+- [x] Verify successful data loading.
 
 ### Task 3.6 - Error Handling and Retry
-- [ ] Display human-readable error messages.
-- [ ] Implement Retry Connection button.
-- [ ] Retry the failed request.
-- [ ] Transition from ERROR to LOADING.
-- [ ] Verify retry success and failure cases.
+
+- [x] Simulate failed asynchronous requests.
+- [x] Display human-readable error messages.
+- [x] Implement Simulate Error button.
+- [x] Implement Retry Connection button.
+- [x] Transition from ERROR to LOADING.
+- [x] Verify successful retry.
 
 ### Task 3.7 - Race Condition Protection
-- [ ] Prevent stale requests from updating UI.
-- [ ] Handle overlapping async requests.
-- [ ] Verify only the latest valid response updates state.
-- [ ] Avoid inconsistent UI states.
+
+- [x] Implement requestIdRef using useRef().
+- [x] Track the latest asynchronous request.
+- [x] Ignore outdated success responses.
+- [x] Ignore outdated error responses.
+- [x] Invalidate requests during component cleanup.
 
 ### Task 3.8 - Final Testing
-- [ ] Verify IDLE state.
-- [ ] Verify LOADING state.
-- [ ] Verify SUCCESS state.
-- [ ] Verify ERROR state.
-- [ ] Verify skeleton animation.
-- [ ] Verify Retry Connection functionality.
-- [ ] Verify race condition protection.
+
+- [x] Verify IDLE state.
+- [x] Verify LOADING state.
+- [x] Verify SUCCESS state.
+- [x] Verify ERROR state.
+- [x] Verify Retry Connection.
+- [x] Verify Skeleton Loading.
+- [x] Implement overlapping request test.
+- [x] Verify stale requests do not overwrite newer results.
+- [x] Run npm run build successfully.
 
 ### Task 3.9 - Git Milestone
-- [ ] Confirm all requirements are satisfied.
-- [ ] Commit: feat(ui): implement multi-state data component with skeleton feedback
+
+- [x] Complete the React component.
+- [x] Complete TypeScript state management.
+- [x] Complete Skeleton Loading and Retry.
+- [x] Implement race condition protection.
+- [ ] Confirm final feature commit is pushed.
+- [ ] Commit completed task decomposition.
 
 ## Required Git Commit
 
 feat(ui): implement multi-state data component with skeleton feedback
 
-## Acceptance Criteria
+## Test Results
 
-- ViewState<T> is correctly implemented.
-- Only valid lifecycle states are allowed.
-- LOADING displays animated skeleton.
-- SUCCESS displays fetched data.
-- ERROR displays a readable error message.
-- Retry Connection works correctly.
-- Async race conditions are prevented.
-- No inconsistent UI states occur.
+| Test | Result |
+|---|---|
+| React + TypeScript Setup | PASS |
+| TypeScript Build | PASS |
+| IDLE State | PASS |
+| LOADING State | PASS |
+| SUCCESS State | PASS |
+| ERROR State | PASS |
+| Skeleton Loader | PASS |
+| Retry Connection | PASS |
+| Race Condition Test | PASS |
+
+## Technologies Used
+
+- React
+- TypeScript
+- TSX
+- Vite
+- CSS3
+- React Hooks
+- Git and GitHub
+
+## Repository
+
+https://github.com/tanhung1004/mini-react-exercises
+
+## Final Status
+
+Implementation: Completed
+
+Functional Testing: Completed
+
+Production Build: Passed
+
+Git Milestone: Pending final confirmation
+
+Task Decomposition: Pending commit
