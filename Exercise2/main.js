@@ -1,60 +1,81 @@
 
-// Import reactive state functions
 import {
   useState,
   setAppRenderer,
   renderApp,
-  stateStore
+  stateStore,
+  registerEvent,
+  clearEvents,
+  attachRootEvents
 } from "./reactive-engine.js";
 
-// Find the root container
+// Find the application root
 const root = document.getElementById("app");
 
 if (!root) {
   throw new Error("Root element #app not found");
 }
 
-// Render the reactive application
+// Create the application UI
 function App() {
   const [count, setCount] = useState(0);
   const [message, setMessage] = useState("Ready");
 
-  // Create semantic HTML elements
-  const main = document.createElement("main");
-  const heading = document.createElement("h1");
-  const paragraph = document.createElement("p");
-  const status = document.createElement("p");
-  const button = document.createElement("button");
+  // Remove old action handlers
+  clearEvents();
 
-  heading.textContent = "Custom useState Engine";
-  paragraph.textContent = `Count: ${count}`;
-  status.textContent = `Status: ${message}`;
-
-  button.textContent = "Increment Count";
-  button.type = "button";
-
-  // Update state when button is clicked
-  button.addEventListener("click", () => {
+  // Register the increment action
+  registerEvent("increment", () => {
     setCount((previous) => previous + 1);
     setMessage("State updated!");
   });
 
-  main.append(heading, paragraph, status, button);
+  // Register the reset action
+  registerEvent("reset", () => {
+    setCount(0);
+    setMessage("Ready");
+  });
 
-  // Replace the previous application view
+  // Create semantic DOM elements
+  const main = document.createElement("main");
+  const heading = document.createElement("h1");
+  const countText = document.createElement("p");
+  const statusText = document.createElement("p");
+  const incrementButton = document.createElement("button");
+  const resetButton = document.createElement("button");
+
+  heading.textContent = "Root Event Delegation Hub";
+  countText.textContent = `Count: ${count}`;
+  statusText.textContent = `Status: ${message}`;
+
+  incrementButton.textContent = "Increment Count";
+  incrementButton.type = "button";
+  incrementButton.dataset.action = "increment";
+
+  resetButton.textContent = "Reset";
+  resetButton.type = "button";
+  resetButton.dataset.action = "reset";
+
+  main.append(
+    heading,
+    countText,
+    statusText,
+    incrementButton,
+    resetButton
+  );
+
+  // Replace previous DOM elements
   root.replaceChildren(main);
 
-  console.log("App rendered:", {
-    count,
-    message
-  });
+  console.log("App rendered:", { count, message });
 }
 
-// Register the application
-setAppRenderer(App);
+// Attach the event listener once
+attachRootEvents(root);
 
-// Perform the initial render
+// Register and render application
+setAppRenderer(App);
 renderApp();
 
-// Inspect the state store
+// Display initial state
 console.log("Initial State Store:", stateStore);
