@@ -94,13 +94,15 @@ Commit ID:
 - [x] Confirm all 8 tests pass.
 - [x] Confirm no JavaScript errors in Console.
 
+
 ### Task 1.8 - DevTools Audit
 
-- [ ] Inspect the Elements panel.
-- [ ] Compare the VNode tree with the DOM tree.
-- [ ] Verify no unnecessary div wrappers.
-- [ ] Verify no unexpected or orphan DOM nodes.
-- [ ] Confirm the DOM structure matches the VNode tree.
+- [x] Inspect the Elements panel.
+- [x] Compare the VNode tree with the DOM tree.
+- [x] Verify no unnecessary div wrappers.
+- [x] Verify no unexpected or orphan DOM nodes.
+- [x] Confirm the DOM structure matches the VNode tree.
+
 
 ## Required Git Commits
 
