@@ -226,3 +226,8 @@ setAppRenderer(TaskApp);
 
 // Render the application
 renderApp();
+
+// Run Exercise 2 verification
+import { runCheckpoint2 } from "./checkpoint2-verify.js";
+
+runCheckpoint2();
